@@ -32,6 +32,12 @@ APT_PROGRAMS=(
   zsh
   bat
   ulauncher
+  mangohud
+  gamemoderun
+  fonts-cascadia-code
+  fonts-firacode
+  fonts-inconsolata
+  zram-tools
 )
 
 echo "Instalando pacotes APT..."
@@ -60,12 +66,14 @@ echo "Gerando arquivo .zsh_aliases e configurando aliases..."
 ALIAS_FILE="$HOME/.zsh_aliases"
 
 ALIASES=(
-  "alias ll='ls -lah'"
-  "alias upd='sudo apt update && sudo apt upgrade'"
+  "alias ls='ls -lah'"
+  "alias updt='sudo apt update && sudo apt upgrade'"
   "alias disks='df -h'"
   "alias ff='fastfetch'"
   "alias bios='sudo systemctl reboot --firmware-setup'"
   "alias cat='batcat'"
+  "alias mkdir='mkdir -pv'"
+  "alias touch='touch -v'"
 )
 
 touch "$ALIAS_FILE"
@@ -83,6 +91,10 @@ grep -qxF "$LINE" "$ZSHRC" || echo "$LINE" >> "$ZSHRC"
 
 echo "Instalando OhMyZsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "Definindo Swappiness em 10 e resetando /etc/sysctl.conf..."
+echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
+sudo sysctl -p
 
 echo "Configuração aplicada. Abra um novo terminal ou execute: source ~/.zshrc"
 echo "Setup finalizado!"

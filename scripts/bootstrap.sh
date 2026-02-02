@@ -49,6 +49,9 @@ curl -fsS https://dl.brave.com/install.sh | sh
 echo "Instalando Zed..."
 curl -fsS https://zed.dev/install.sh | sh
 
+echo "Instalando Rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
 echo "Instalando NVM + Node LTS..."
 curl -fsS https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
@@ -74,6 +77,7 @@ ALIASES=(
   "alias cat='batcat'"
   "alias mkdir='mkdir -pv'"
   "alias touch='touch -v'"
+  "alias fullclean='sudo apt autoremove --purge && sudo apt autoclean && sudo apt clean'"
 )
 
 touch "$ALIAS_FILE"
